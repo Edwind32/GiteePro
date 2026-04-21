@@ -195,7 +195,8 @@ git push
 # 推送指定分支
 git push origin 分支名
 
-# 强制推送（谨慎使用）
+# 强制推送（推荐使用 --force-with-lease 而非 --force）
+# --force-with-lease 会在远程有新提交时拒绝推送，防止覆盖他人的工作
 git push --force-with-lease origin 分支名
 ```
 
@@ -321,7 +322,7 @@ git log --oneline --graph --all
 
 **Q: 误提交敏感信息怎么办？**
 
-A: 立即修改密码/密钥，然后使用 `git rebase -i` 或 `git filter-branch` 从历史中删除，再强制推送。**永远不要将密码、Token 等敏感信息提交到仓库。**
+A: 立即修改密码/密钥，然后使用 `git rebase -i` 清理提交历史，或使用 [`git-filter-repo`](https://github.com/newren/git-filter-repo)（推荐，`git filter-branch` 已废弃）从历史中彻底删除敏感内容，再强制推送。**永远不要将密码、Token 等敏感信息提交到仓库。**
 
 ---
 
